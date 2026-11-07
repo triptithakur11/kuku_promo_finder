@@ -1,0 +1,36 @@
+EPISODE NUMBER: 2
+EPISODE LOGLINE: Ethan demands the truth about the locket.
+
+SCENE 01
+Scene start: 00:00.00
+
+ETHAN (Desperate):
+Start: 00:00.50, End: 00:03.00
+"That locket belonged to my sister."
+
+**MAYA (Confused):**
+Start: (00:03.20) | End: (00:05.00)
+"Your sister? I found it at the orphanage."
+
+ACTION:
+This block has no timestamps and should be skipped with a warning.
+
+ETHAN (Shaken):
+Start: 00:09.00 | End: 00:06.00
+"Then you were there... the night of the fire."
+
+MAYA (Terrified):
+00:10.00 --> 00:13.50
+"How do you know about the fire?"
+
+ACTION:
+(00:14.00 – 00:20.00)
+Ethan grips her wrist. Behind them the diner door bursts open: a woman in a red coat stands in the rain.
+
+WOMAN IN RED (Icy):
+[00:20.50 - 00:24.00]
+"Step away from my husband."
+
+SOUND FX:
+[00:24.00 - 00:30.00]
+Thunder cracks. Cliffhanger sting.

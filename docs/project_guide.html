@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Promo Finder: Project Guide</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm 18mm 15mm; }
+  :root {
+    --text: #17172b; --text-2: #3d3d52; --muted: #6e6e82; --line: #e4e2ec; --bg-soft: #f6f5fa;
+    --purple: #6b3fe6; --purple-soft: #f1edfe; --purple-ink: #4f27c4; --green: #1f9a52; --green-soft: #e6f6ec;
+    --orange: #d0611c; --orange-soft: #fdefe5; --blue: #2f5be8; --yellow-bg: #fff8e2; --yellow-ink: #8a5d00;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font: 9.4pt/1.48 Inter, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text); }
+  h1, h2, h3, h4 { line-height: 1.25; margin: 0; }
+  h2 { font-size: 16pt; margin: 0 0 4mm; padding-top: 1mm; color: var(--text); }
+  h2 .num { color: var(--purple); margin-right: 6px; }
+  h3 { font-size: 12pt; margin: 5mm 0 2mm; }
+  h4 { font-size: 10.5pt; margin: 3mm 0 1mm; }
+  p { margin: 0 0 2.4mm; }
+  ul, ol { margin: 0 0 2.6mm; padding-left: 5mm; }
+  li { margin-bottom: 1mm; }
+  code, .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 8.8pt; background: var(--bg-soft); padding: 0 3px; border-radius: 3px; }
+  pre { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 8.4pt; background: var(--bg-soft); border: 1px solid var(--line);
+        border-radius: 6px; padding: 3mm; margin: 0 0 3mm; white-space: pre-wrap; line-height: 1.45; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 3.5mm; font-size: 8.8pt; }
+  tr { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; }
+  th { text-align: left; background: var(--purple-soft); color: var(--purple-ink); font-weight: 600; }
+  th, td { padding: 1.6mm 2.2mm; border: 1px solid var(--line); vertical-align: top; }
+  .page-break { break-before: page; }
+  .avoid { break-inside: avoid; }
+  .muted { color: var(--muted); }
+  .pill { display: inline-block; padding: 1px 8px; border-radius: 99px; font-size: 8.4pt; font-weight: 600; }
+  .pill.p { background: var(--purple-soft); color: var(--purple-ink); }
+  .pill.g { background: var(--green-soft); color: var(--green); }
+  .pill.o { background: var(--orange-soft); color: var(--orange); }
+  .callout { border-radius: 8px; padding: 3mm 4mm; margin: 0 0 3.5mm; border: 1px solid var(--line); background: var(--bg-soft); }
+  .callout.purple { background: var(--purple-soft); border-color: #d9cffb; }
+  .callout.yellow { background: var(--yellow-bg); border-color: #f2d47c; color: var(--yellow-ink); }
+  .callout.green { background: var(--green-soft); border-color: #bfe5cd; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.5mm; }
+  .card { border: 1px solid var(--line); border-radius: 8px; padding: 3mm 3.5mm; break-inside: avoid; }
+  .card b.t { display: block; margin-bottom: 1mm; }
+  .stat b { display: block; font-size: 16pt; color: var(--purple-ink); line-height: 1.1; }
+  .stat span { font-size: 8.6pt; color: var(--muted); }
+  figure { margin: 0 0 4mm; break-inside: avoid; }
+  figcaption { font-size: 8.6pt; color: var(--muted); margin-top: 1.5mm; text-align: center; }
+  svg text { font-family: Inter, -apple-system, Helvetica, Arial, sans-serif; }
+
+  .cover { height: 255mm; display: flex; flex-direction: column; justify-content: space-between; }
+  .cover-top { padding-top: 22mm; }
+  .cover .tag { display: inline-block; background: var(--purple-soft); color: var(--purple-ink); font-weight: 600; font-size: 9.5pt;
+                padding: 4px 12px; border-radius: 99px; }
+  .cover h1 { font-size: 34pt; margin: 8mm 0 4mm; letter-spacing: -.5px; }
+  .cover .sub { font-size: 14pt; color: var(--text-2); max-width: 150mm; }
+  .cover .hero { margin-top: 12mm; border-radius: 14px; padding: 8mm; background: linear-gradient(105deg, #fbfaff, #efe8ff 70%, #e4d8ff);
+                 border: 1px solid #e5ddfb; }
+  .cover .meta { font-size: 9.5pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 4mm; }
+  .toc { columns: 2; column-gap: 10mm; font-size: 10pt; }
+  .toc div { margin-bottom: 1.6mm; }
+  .toc b { color: var(--purple); display: inline-block; width: 7mm; }
+
+  .qa { border: 1px solid var(--line); border-radius: 8px; padding: 2.6mm 3.5mm; margin-bottom: 2.6mm; break-inside: avoid; }
+  .qa .q { font-weight: 650; margin-bottom: 1.2mm; }
+  .qa .q .n { color: var(--purple); margin-right: 4px; }
+  .qa .a { color: var(--text-2); font-size: 9pt; }
+  .qa .a p:last-child { margin-bottom: 0; }
+  .lvl { float: right; margin-left: 6px; }
+  .section-intro { color: var(--text-2); margin-bottom: 4mm; }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="cover-top">
+    <span class="tag">Kuku AI Generalist Assignment · Problem 1</span>
+    <h1>Promo Finder</h1>
+    <div class="sub">An AI tool that reads microdrama screenplays and finds the best 20–60 second promo clips, ranked by what to post first.</div>
+    <div class="hero">
+      <div class="grid3">
+        <div class="stat"><b>50</b><span>episodes in the input pack</span></div>
+        <div class="stat"><b>3,727</b><span>timestamped lines parsed, 0 warnings</span></div>
+        <div class="stat"><b>~103 min</b><span>of footage covered</span></div>
+        <div class="stat"><b>52</b><span>AI requests for a full show (about 180K input tokens)</span></div>
+        <div class="stat"><b>8</b><span>AI providers, switchable with one setting</span></div>
+        <div class="stat"><b>15</b><span>offline tests, including a show in a new format</span></div>
+      </div>
+    </div>
+    <h3 style="margin-top:12mm">Contents</h3>
+    <div class="toc">
+      <div><b>1</b>High-level overview</div>
+      <div><b>2</b>What we built</div>
+      <div><b>3</b>How it works, step by step</div>
+      <div><b>4</b>System design</div>
+      <div><b>5</b>Key design decisions and trade-offs</div>
+      <div><b>6</b>Quality checking and known failures</div>
+      <div><b>7</b>Scale, cost and reliability</div>
+      <div><b>8</b>Tech stack and project layout</div>
+      <div><b>9</b>How to run it</div>
+      <div><b>10</b>Interview questions with model answers</div>
+    </div>
+  </div>
+  <div class="meta">
+    Built in Python (FastAPI) with a React UI. Default model: Google Gemini Flash via the Interactions API.<br>
+    The input pack is Kuku's confidential content. This guide quotes it only in a few short examples.
+  </div>
+</section>
+
+<section class="page-break">
+  <h2><span class="num">1</span>High-level overview</h2>
+
+  <h3>The problem</h3>
+  <p>Kuku makes AI-generated <b>microdramas</b>: short vertical series with 1–2 minute episodes. New viewers come in through
+    <b>promos</b>, 20–60 second clips cut from the show and posted on Instagram, TikTok and YouTube. Today an editor watches every
+    episode and picks promo moments by hand, one show at a time, and new shows come out every week. That doesn't scale.</p>
+
+  <div class="callout purple">
+    <b>What a good promo needs</b> (from the brief):
+    <ol style="margin:1.5mm 0 0">
+      <li><b>A hook</b> in the first 3 seconds that stops a scrolling viewer: a slap, a reveal, a shocking line.</li>
+      <li><b>A cliffhanger ending</b>: it cuts at an unresolved moment, so the viewer has to find out what happens.</li>
+      <li><b>It stands alone</b>: it makes sense to someone who has never seen the show.</li>
+    </ol>
+  </div>
+
+  <h3>Our solution in one paragraph</h3>
+  <p><b>Promo Finder</b> reads a show's timestamped screenplays and returns a <b>ranked shortlist of promo clips</b>. For each one it
+    gives the episode and exact start/end of every segment, the hook, the cliffhanger, one line on why it works, and where it should
+    rank in the posting order. Cheap <b>rules</b> shortlist strong moments. An <b>LLM</b> reads each episode and picks and explains the
+    best clips. <b>Code</b> then checks every timestamp and duration, so the AI can never invent footage. An <b>editor</b> approves or
+    rejects each pick in a simple web UI and exports the approved ones as edit lists for Premiere or DaVinci Resolve.</p>
+
+  <h3>Who uses it, and how</h3>
+  <div class="grid3">
+    <div class="card"><b class="t">1 · Upload</b>The editor drops the screenplay zip. The tool reports how many episodes it found and what a run will cost in AI requests and minutes, before anything is spent.</div>
+    <div class="card"><b class="t">2 · AI finds moments</b>It picks hook-to-cliffhanger clips per episode, builds multi-episode trailers, checks every timestamp, and ranks the results.</div>
+    <div class="card"><b class="t">3 · Review &amp; export</b>The editor reads each pick's script excerpt, approves or rejects it with a reason, and exports an EDL and ffmpeg script.</div>
+  </div>
+
+  <h3>Scope: what it does and doesn't do</h3>
+  <table>
+    <tr><th style="width:50%">In scope</th><th>Out of scope (as the brief says)</th></tr>
+    <tr><td>Finding promo moments and exact start/end points<br>Single clips, multi-cut clips and cross-episode trailers<br>Hook, cliffhanger and reason for each pick<br>Ranking and posting order<br>Quality checks and honest failure reporting</td>
+        <td>Video editing, music and text overlays<br>Generating new footage<br>Reading the video itself (it only reads the screenplay)<br>Publishing to social platforms</td></tr>
+  </table>
+
+  <h3>Assumptions we made where the brief was silent</h3>
+  <ul>
+    <li><b>Script time = video time.</b> The screenplay timestamps match the final cut.</li>
+    <li><b>Promos are acquisition ads for strangers.</b> "Makes sense alone" carries a lot of weight, and clips from early episodes
+      (1–10) get a small bonus, because a new viewer starts at episode 1.</li>
+    <li><b>The hook must be a line, action or sound.</b> A camera move alone doesn't count.</li>
+    <li><b>Never cut mid-line.</b> Clip edges always snap to real line boundaries.</li>
+    <li><b>Spoilers are fine.</b> In this genre the twist (for example "he is secretly the Duke") is the selling point.</li>
+    <li><b>Montages may only use code-extracted "beats"</b>, so the AI can't make up a timestamp.</li>
+  </ul>
+</section>
+
+<section style="margin-top:8mm">
+  <h2><span class="num">2</span>What we built</h2>
+  <p class="section-intro">Five deliverables that work together. All of them run locally, and the AI is optional.</p>
+
+  <div class="grid2">
+    <div class="card"><b class="t">🧠 Promo engine <span class="muted">(Python package <code>promo_finder</code>)</span></b>
+      Parser → rule signals → LLM passes → validation → ranking → reports. It handles any number of episodes and falls back to rules if the AI fails.</div>
+    <div class="card"><b class="t">⌨️ Command-line tool <span class="muted">(<code>cli.py</code>)</span></b>
+      Batch runs, a free <code>--dry-run</code> cost check, a <code>--max-calls</code> budget, an episode subset, and switching off montages or the judge.</div>
+    <div class="card"><b class="t">🖥️ Web app <span class="muted">(FastAPI + React)</span></b>
+      Explains the product, lets you drag in a zip, pick a model from a dropdown, watch live progress with a timer, review promo cards, approve or reject with reasons, and export.</div>
+    <div class="card"><b class="t">🎬 Editor export <span class="muted">(<code>export.py</code>)</span></b>
+      A CMX3600 <b>EDL</b> per promo (imports into Premiere Pro and DaVinci Resolve) and an <b>ffmpeg</b> script that cuts and joins the clips. Tested: a 29.5s + 9.5s promo came out at exactly 39.0s.</div>
+    <div class="card"><b class="t">📊 Quality + feedback <span class="muted">(<code>quality_check.py</code>, <code>feedback.py</code>)</span></b>
+      Hard-rule compliance, coverage, flagged picks, and precision from editor decisions. It also shows which score separates good picks from bad, as evidence for tuning.</div>
+    <div class="card"><b class="t">✅ Tests + demo kit</b>
+      15 offline unit and integration tests, an original test show in a different script format, and a 5-minute interview demo script.</div>
+  </div>
+
+  <h3>What one promo looks like (output)</h3>
+<pre>{
+  "rank": 1, "id": "P012", "kind": "single",
+  "title": "Jilted at the altar",
+  "segments": [ { "episode": 1, "start": "00:39.10", "end": "01:14.30", "duration": 35.2 } ],
+  "hook": "\"Because he is marrying me.\" (her sister, holding the groom's hand)",
+  "cliffhanger": "Juliana asks \"How long?\" and the scene cuts before anyone answers",
+  "why": "Instant betrayal a stranger understands in 3 seconds; cuts on an open question",
+  "scores": { "hook": 9, "cliffhanger": 8, "standalone": 9, "emotion": 9 },
+  "final_score": 0.84, "rank_reason": "Strongest premise; post first to set up the show",
+  "flags": [], "excerpt": ["E01 00:39.10 LADY IN GOLD GOWN (Gloating, Smug): Because he is marrying me.", "..."]
+}</pre>
+  <p class="muted" style="font-size:8.8pt">An illustrative example of the format. Real values come from <code>outputs/&lt;show&gt;/promos.json</code>.</p>
+
+  <h3>Output files for every run</h3>
+  <table>
+    <tr><th style="width:30%">File</th><th>Purpose</th></tr>
+    <tr><td><code>promos.md</code></td><td>Human-readable ranking with script excerpts, flags, rejected picks and a run log</td></tr>
+    <tr><td><code>promos.csv</code> / <code>promos.json</code></td><td>Editor spreadsheet / everything, machine-readable</td></tr>
+    <tr><td><code>raw_llm/*.json</code></td><td>Every prompt and its <b>unedited</b> model response (the brief's "raw outputs"). Also used as a cache</td></tr>
+    <tr><td><code>approvals.json</code></td><td>Editor decisions (approved or rejected, plus a reason). This becomes labelled data</td></tr>
+    <tr><td><code>quality.md</code></td><td>The quality report</td></tr>
+  </table>
+</section>
+
+<section style="margin-top:8mm">
+  <h2><span class="num">3</span>How it works, step by step</h2>
+
+  <figure>
+    <svg viewBox="0 0 760 300" width="100%">
+      <defs>
+        <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8b86a3"/></marker>
+      </defs>
+      <g font-size="12">
+        <rect x="10" y="20" width="130" height="62" rx="10" fill="#f6f5fa" stroke="#d9d7e3"/>
+        <text x="75" y="45" text-anchor="middle" font-weight="700">Screenplays</text>
+        <text x="75" y="63" text-anchor="middle" fill="#6e6e82" font-size="10">.zip / .txt, timestamped</text>
+
+        <rect x="170" y="20" width="130" height="62" rx="10" fill="#e6f6ec" stroke="#bfe5cd"/>
+        <text x="235" y="45" text-anchor="middle" font-weight="700">1 · Parse</text>
+        <text x="235" y="63" text-anchor="middle" fill="#3d3d52" font-size="10">regex → events (code)</text>
+
+        <rect x="330" y="20" width="130" height="62" rx="10" fill="#e6f6ec" stroke="#bfe5cd"/>
+        <text x="395" y="45" text-anchor="middle" font-weight="700">2 · Rule signals</text>
+        <text x="395" y="63" text-anchor="middle" fill="#3d3d52" font-size="10">hook/cliff scores (code)</text>
+
+        <rect x="490" y="20" width="130" height="62" rx="10" fill="#f1edfe" stroke="#d9cffb"/>
+        <text x="555" y="45" text-anchor="middle" font-weight="700">3 · LLM per episode</text>
+        <text x="555" y="63" text-anchor="middle" fill="#3d3d52" font-size="10">pick + explain 0–3 clips</text>
+
+        <rect x="630" y="110" width="120" height="62" rx="10" fill="#f1edfe" stroke="#d9cffb"/>
+        <text x="690" y="135" text-anchor="middle" font-weight="700">4 · LLM montage</text>
+        <text x="690" y="153" text-anchor="middle" fill="#3d3d52" font-size="10">cross-episode beats</text>
+
+        <rect x="470" y="200" width="150" height="62" rx="10" fill="#e6f6ec" stroke="#bfe5cd"/>
+        <text x="545" y="225" text-anchor="middle" font-weight="700">5 · Validate</text>
+        <text x="545" y="243" text-anchor="middle" fill="#3d3d52" font-size="10">snap · 20–60s · hook ≤3s</text>
+
+        <rect x="300" y="200" width="140" height="62" rx="10" fill="#e6f6ec" stroke="#bfe5cd"/>
+        <text x="370" y="225" text-anchor="middle" font-weight="700">6 · Score + dedupe</text>
+        <text x="370" y="243" text-anchor="middle" fill="#3d3d52" font-size="10">75% LLM + 25% rules</text>
+
+        <rect x="140" y="200" width="130" height="62" rx="10" fill="#f1edfe" stroke="#d9cffb"/>
+        <text x="205" y="225" text-anchor="middle" font-weight="700">7 · LLM judge</text>
+        <text x="205" y="243" text-anchor="middle" fill="#3d3d52" font-size="10">posting order</text>
+
+        <rect x="10" y="200" width="100" height="62" rx="10" fill="#fff8e2" stroke="#f2d47c"/>
+        <text x="60" y="225" text-anchor="middle" font-weight="700">8 · Editor</text>
+        <text x="60" y="243" text-anchor="middle" fill="#3d3d52" font-size="10">approve · export</text>
+      </g>
+      <g stroke="#8b86a3" stroke-width="1.6" fill="none" marker-end="url(#ar)">
+        <path d="M140 51 H166"/><path d="M300 51 H326"/><path d="M460 51 H486"/>
+        <path d="M620 51 H690 V106"/>
+        <path d="M690 172 V231 H624"/>
+        <path d="M555 82 V196"/>
+        <path d="M470 231 H444"/><path d="M300 231 H274"/><path d="M140 231 H114"/>
+        <path d="M395 82 Q 470 140 540 196" stroke-dasharray="4 3"/>
+      </g>
+      <text x="150" y="140" font-size="9.5" fill="#6e6e82">dashed line: rule candidates are also</text><text x="150" y="153" font-size="9.5" fill="#6e6e82">the fallback if the LLM fails</text>
+      <g font-size="10"><rect x="10" y="282" width="12" height="10" rx="2" fill="#e6f6ec" stroke="#bfe5cd"/><text x="27" y="291">deterministic code</text>
+        <rect x="140" y="282" width="12" height="10" rx="2" fill="#f1edfe" stroke="#d9cffb"/><text x="157" y="291">LLM (swappable)</text>
+        <rect x="260" y="282" width="12" height="10" rx="2" fill="#fff8e2" stroke="#f2d47c"/><text x="277" y="291">human in the loop</text></g>
+    </svg>
+    <figcaption>Figure 1. The promo pipeline. Green steps are code, purple steps are AI, and the yellow step is the person who signs off.</figcaption>
+  </figure>
+
+  <table>
+    <tr><th style="width:21%">Step</th><th>What happens</th><th style="width:21%">Why this way</th></tr>
+    <tr><td><b>1 · Parse</b><br><span class="muted">parser.py</span></td>
+        <td>Regex reads episode number, logline, scenes and every block (CAMERA / ACTION / SOUND FX / CHARACTER (emotion)) with start/end seconds. Accepts MM:SS or HH:MM:SS, bold or plain labels, and several timestamp styles. Bad blocks are logged and skipped.</td>
+        <td>The input is structured, so code is exact, free and fast. Being forgiving means a new show won't crash it.</td></tr>
+    <tr><td><b>2 · Rule signals</b><br><span class="muted">signals.py</span></td>
+        <td>Each line gets a <b>hook score</b> (violence and reveal words, intense emotion tags, short punchy lines) and a <b>cliffhanger score</b> (stinger sound cues, "cut to black", questions and threats, last 12s of the episode). It generates 20–60s windows from strong hooks to strong endings and keeps the top 5 per episode.</td>
+        <td>Gives the LLM a shortlist, acts as a sanity score, and lets the tool work with no AI at all.</td></tr>
+    <tr><td><b>3 · LLM per episode</b></td>
+        <td>One request per episode: the full timestamped script, the logline, and the rule candidates. Returns JSON with 0–3 promos: segments, hook, cliffhanger, why, 1–10 scores (hook, cliffhanger, standalone, emotion), context a stranger would lack, and tropes.</td>
+        <td>Judging meaning ("would a stranger get this?") needs language understanding.</td></tr>
+    <tr><td><b>4 · LLM montage</b></td>
+        <td>Code cuts the strongest 5 "beats" from every episode (short windows with IDs like <code>E03-B2</code>). One request designs 4 trailers that each sell a different angle, referring to beats <b>by ID only</b>.</td>
+        <td>Story-level view across episodes, with no way to invent timestamps.</td></tr>
+    <tr><td><b>5 · Validate</b><br><span class="muted">validate.py</span></td>
+        <td>Snaps each edge to the nearest real line (and flags it if it moved more than 2.5s), extends any edge that would cut through dialogue, merges overlaps, enforces 20–60s, checks for a real hook beat in the first 3s, and flags weak endings.</td>
+        <td>The LLM is never trusted with numbers. Code owns the timestamps.</td></tr>
+    <tr><td><b>6 · Score + dedupe</b><br><span class="muted">rank.py</span></td>
+        <td>final = 0.75 × LLM score + 0.25 × rule score, minus penalties (context needed, warnings, length outside 25–45s), plus a small early-episode bonus. Promos sharing at least 50% of their footage are deduplicated.</td>
+        <td>One overconfident "10/10" can't carry a clip that has no hook.</td></tr>
+    <tr><td><b>7 · LLM judge</b></td>
+        <td>The top 20 go to one request that sets the <b>posting order</b> (variety, launch strategy) and calls out weak picks.</td>
+        <td>"What to post first" is a portfolio decision, not just a per-clip score.</td></tr>
+    <tr><td><b>8 · Editor</b></td>
+        <td>Reviews cards in the UI, approves or rejects with a reason, and exports EDL + ffmpeg + CSV.</td>
+        <td>A person stays accountable, and each click becomes data.</td></tr>
+  </table>
+</section>
+
+<section class="page-break">
+  <h2><span class="num">4</span>System design</h2>
+
+  <h3>4.1 Architecture</h3>
+  <figure>
+    <svg viewBox="0 0 760 330" width="100%">
+      <defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8b86a3"/></marker></defs>
+      <g font-size="11.5">
+        <rect x="10" y="10" width="200" height="140" rx="12" fill="#fff" stroke="#d9d7e3"/>
+        <text x="110" y="32" text-anchor="middle" font-weight="700">Browser · React (Vite)</text>
+        <text x="24" y="56" font-size="10.5">Home: explain + upload</text>
+        <text x="24" y="74" font-size="10.5">ModelSelect dropdown</text>
+        <text x="24" y="92" font-size="10.5">Running: progress + timer</text>
+        <text x="24" y="110" font-size="10.5">Results: cards, filters, search</text>
+        <text x="24" y="128" font-size="10.5">Approve / Reject / Export</text>
+
+        <rect x="10" y="190" width="200" height="72" rx="12" fill="#fff" stroke="#d9d7e3"/>
+        <text x="110" y="214" text-anchor="middle" font-weight="700">CLI · cli.py</text>
+        <text x="110" y="234" text-anchor="middle" font-size="10.5">batch runs · --dry-run</text>
+        <text x="110" y="250" text-anchor="middle" font-size="10.5">--max-calls · --episodes</text>
+
+        <rect x="260" y="10" width="220" height="150" rx="12" fill="#f6f5fa" stroke="#d9d7e3"/>
+        <text x="370" y="32" text-anchor="middle" font-weight="700">FastAPI server · server.py</text>
+        <text x="274" y="54" font-size="10">POST /api/estimate  (free pre-check)</text>
+        <text x="274" y="70" font-size="10">POST /api/run → background thread</text>
+        <text x="274" y="86" font-size="10">GET  /api/jobs/{id}  (polling)</text>
+        <text x="274" y="102" font-size="10">GET  /api/runs, /api/runs/{slug}</text>
+        <text x="274" y="118" font-size="10">POST /api/decisions/{slug}</text>
+        <text x="274" y="134" font-size="10">GET  /api/feedback · POST /api/export</text>
+        <text x="274" y="150" font-size="10">serves web/dist (built UI)</text>
+
+        <rect x="260" y="190" width="220" height="130" rx="12" fill="#e6f6ec" stroke="#bfe5cd"/>
+        <text x="370" y="212" text-anchor="middle" font-weight="700">promo_finder (engine)</text>
+        <text x="274" y="234" font-size="10">parser · signals · pipeline</text>
+        <text x="274" y="252" font-size="10">validate · rank · report</text>
+        <text x="274" y="270" font-size="10">export (EDL/ffmpeg) · feedback</text>
+        <text x="274" y="288" font-size="10">llm.py: provider layer + budget</text>
+        <text x="274" y="306" font-size="10">prompts.py: all prompt text</text>
+
+        <rect x="530" y="10" width="220" height="150" rx="12" fill="#f1edfe" stroke="#d9cffb"/>
+        <text x="640" y="32" text-anchor="middle" font-weight="700">LLM providers</text>
+        <text x="544" y="56" font-size="10.5">Gemini 3.x Flash (default)</text>
+        <text x="544" y="74" font-size="10.5">  ↳ auto-fallback 3.8 → 3.6 → Lite</text>
+        <text x="544" y="92" font-size="10.5">Anthropic Claude</text>
+        <text x="544" y="110" font-size="10.5">Groq · OpenRouter · OpenAI</text>
+        <text x="544" y="128" font-size="10.5">Ollama (local) · any compatible API</text>
+        <text x="544" y="146" font-size="10.5">"none" = rules only</text>
+
+        <rect x="530" y="190" width="220" height="130" rx="12" fill="#fff8e2" stroke="#f2d47c"/>
+        <text x="640" y="212" text-anchor="middle" font-weight="700">File storage · outputs/&lt;show&gt;/</text>
+        <text x="544" y="234" font-size="10">promos.json / .csv / .md</text>
+        <text x="544" y="252" font-size="10">raw_llm/*.json (raw + cache)</text>
+        <text x="544" y="270" font-size="10">approvals.json (decisions)</text>
+        <text x="544" y="288" font-size="10">quality.md</text>
+        <text x="544" y="306" font-size="10">.env: API keys (git-ignored)</text>
+      </g>
+      <g stroke="#8b86a3" stroke-width="1.6" fill="none" marker-end="url(#ar2)">
+        <path d="M210 80 H256"/><path d="M370 160 V186"/><path d="M210 226 H256"/>
+        <path d="M480 255 H526"/><path d="M480 280 Q 505 140 526 100"/>
+      </g>
+      <text x="215" y="72" font-size="9.5" fill="#6e6e82">HTTP/JSON</text>
+      <text x="490" y="272" font-size="9.5" fill="#6e6e82">files</text>
+      <text x="440" y="182" font-size="9.5" fill="#6e6e82">HTTPS</text>
+    </svg>
+    <figcaption>Figure 2. Components. The UI and the CLI are thin layers over the same engine, so anything the UI can do, a script can do too.</figcaption>
+  </figure>
+
+  <h3>4.2 Component responsibilities</h3>
+  <table>
+    <tr><th style="width:22%">Module</th><th>Responsibility</th><th style="width:28%">Key detail</th></tr>
+    <tr><td><code>parser.py</code></td><td>Turns text into <code>Show → Episode → Scene/Event</code> dataclasses</td><td>Tolerant. Warnings instead of crashes</td></tr>
+    <tr><td><code>signals.py</code></td><td>Hook and cliffhanger scoring, candidate windows, top beats</td><td>Keyword lexicons + structure; non-max suppression on overlap</td></tr>
+    <tr><td><code>llm.py</code></td><td>One interface: <code>complete(system, user)</code> for 8 providers</td><td>Rate throttle, call budget, rate-limit retry, model fallback, SDK retries disabled</td></tr>
+    <tr><td><code>prompts.py</code></td><td>System, episode, montage and judge prompts</td><td>All in one file, easy to diff and tune</td></tr>
+    <tr><td><code>pipeline.py</code></td><td>Orchestration, the raw-response store and cache, progress callbacks</td><td>Cache key = hash(model + system + prompt)</td></tr>
+    <tr><td><code>validate.py</code></td><td>Promo data model; snapping and hard rules</td><td>Code owns timestamps</td></tr>
+    <tr><td><code>rank.py</code></td><td>Blended score, dedupe, judge ordering</td><td>Weights are explicit constants</td></tr>
+    <tr><td><code>export.py</code></td><td>EDL per promo, ffmpeg cut script, zip</td><td>Timecodes rounded half-up at a chosen fps</td></tr>
+    <tr><td><code>feedback.py</code></td><td>Saves decisions; computes precision and score gaps</td><td>Atomic file writes</td></tr>
+    <tr><td><code>server.py</code></td><td>REST API, background jobs, serves the UI</td><td>Reports which providers have keys (true/false only)</td></tr>
+  </table>
+
+  <h3>4.3 Data model</h3>
+<pre>Show(title, episodes[])
+ └─ Episode(number, logline, continuity, scenes[], events[], warnings[], duration)
+     └─ Event(episode, scene, idx, kind: dialogue|action|camera|sfx|text, start, end, text, speaker, emotion)
+
+Promo(id, kind: single|multi|montage, title, segments[Segment(episode, start, end)],
+      hook, cliffhanger, why, scores{hook, cliffhanger, standalone, emotion}, context_needed, tropes[],
+      source: llm|rules, rule_score, final_score, rank, rank_reason, flags[], excerpt[])
+
+Decision (approvals.json): { promo_id: { status: approved|rejected, reason, at } }</pre>
+</section>
+
+<section>
+  <h3>4.4 Request lifecycle (web app)</h3>
+  <figure>
+    <svg viewBox="0 0 760 250" width="100%">
+      <defs><marker id="ar3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6b3fe6"/></marker></defs>
+      <g font-size="11" font-weight="700" text-anchor="middle">
+        <text x="80" y="18">Browser</text><text x="300" y="18">FastAPI</text><text x="500" y="18">Engine thread</text><text x="690" y="18">LLM API</text>
+      </g>
+      <g stroke="#d9d7e3" stroke-width="1.5"><path d="M80 26 V245"/><path d="M300 26 V245"/><path d="M500 26 V245"/><path d="M690 26 V245"/></g>
+      <g stroke="#6b3fe6" stroke-width="1.4" fill="none" marker-end="url(#ar3)" font-size="10">
+        <path d="M80 45 H296"/><path d="M300 62 H84"/>
+        <path d="M80 90 H296"/><path d="M300 106 H496"/><path d="M300 122 H84"/>
+        <path d="M500 145 H686"/><path d="M690 162 H504"/>
+        <path d="M80 190 H296"/><path d="M300 206 H84"/>
+        <path d="M500 230 H304"/>
+      </g>
+      <g font-size="9.6" fill="#3d3d52">
+        <text x="90" y="41">POST /api/estimate (zip)</text>
+        <text x="110" y="58">episodes · requests · minutes (no AI)</text>
+        <text x="90" y="86">POST /api/run (zip, model, options)</text>
+        <text x="320" y="102">start background job</text>
+        <text x="110" y="118">{ job_id }</text>
+        <text x="508" y="141">1 request/episode (+ montage, judge)</text>
+        <text x="520" y="158">JSON → cached in raw_llm/</text>
+        <text x="90" y="186">GET /api/jobs/{id} every 1.2s</text>
+        <text x="110" y="202">{ progress, message, result }</text>
+        <text x="320" y="226">write promos.json/.csv/.md</text>
+      </g>
+    </svg>
+    <figcaption>Figure 3. A run is a background job: the browser polls for progress, so a 20-minute run never hits an HTTP timeout.</figcaption>
+  </figure>
+
+  <h3>4.5 Reliability and safety mechanisms</h3>
+  <div class="grid2">
+    <div class="card"><b class="t">Graceful degradation</b>If the LLM fails for an episode, the rule candidates are used and the run log says so. A run always produces output.</div>
+    <div class="card"><b class="t">Model fallback</b>If Gemini 3.8 Flash times out or is unavailable, the tool switches once to 3.6 Flash, then to Lite, and stays on the model that works.</div>
+    <div class="card"><b class="t">Spend protection</b><code>--dry-run</code> shows the cost first; <code>--max-calls</code> sets a hard budget; only rate limits are retried (at most twice); the SDK's hidden retries are switched off.</div>
+    <div class="card"><b class="t">Cache</b>Every response is keyed by a hash of the model and prompt. Re-running the same show costs 0 requests, and the cache doubles as the raw-outputs folder.</div>
+    <div class="card"><b class="t">No invented footage</b>Timestamps are snapped to real lines in code. Montage segments can only reference code-extracted beat IDs, and unknown IDs are flagged.</div>
+    <div class="card"><b class="t">Secrets &amp; confidentiality</b>Keys live in <code>.env</code> (git-ignored). The UI only learns which providers have a key, as true/false. <code>data/</code> is git-ignored. Uploads are processed in memory.</div>
+  </div>
+</section>
+
+<section style="margin-top:8mm">
+  <h2><span class="num">5</span>Key design decisions and trade-offs</h2>
+  <table>
+    <tr><th style="width:26%">Decision</th><th>Why</th><th style="width:30%">Trade-off accepted</th></tr>
+    <tr><td><b>Hybrid: rules + LLM + code checks</b></td><td>Rules are cheap and consistent but don't understand the story. The LLM understands the story but makes up numbers. Code checks keep both honest.</td><td>More moving parts than "one big prompt".</td></tr>
+    <tr><td><b>One LLM request per episode</b></td><td>Fits the context window easily, can be cached per episode, can run in parallel, and one failure costs only one episode.</td><td>Needs a separate montage pass for cross-episode promos.</td></tr>
+    <tr><td><b>Montages built from pre-cut beat IDs</b></td><td>The model chooses <i>which</i> moments; code decides <i>where</i> they are.</td><td>The model can't choose a moment the rules missed for montages.</td></tr>
+    <tr><td><b>75% LLM / 25% rules score blend</b></td><td>Keeps the ranking grounded, and the ranking still works with AI off.</td><td>The weights are judgement calls. Editor feedback is how we'd tune them.</td></tr>
+    <tr><td><b>Early-episode bonus (+0.03)</b></td><td>New viewers start at episode 1, so an ad's promise should pay off quickly.</td><td>May under-rank great late twists.</td></tr>
+    <tr><td><b>Files instead of a database</b></td><td>Easy to inspect, submit as raw outputs and version. No setup needed.</td><td>No multi-user concurrency or search. A database would come at production scale.</td></tr>
+    <tr><td><b>Background job + polling</b></td><td>Runs take minutes. Polling is simple and robust.</td><td>Job state is in memory and lost on restart (results already saved stay on disk).</td></tr>
+    <tr><td><b>Provider layer with "provider:model" strings</b></td><td>The brief rewards easy model swaps. Adding a provider means writing one method.</td><td>Lowest-common-denominator features (JSON mode only).</td></tr>
+    <tr><td><b>Gemini without Google Search tool</b></td><td>Promos must come only from the screenplay. Search adds latency and outside content.</td><td>None, for this task.</td></tr>
+    <tr><td><b>EDL + ffmpeg export</b></td><td>Fits the editor's existing tools (Premiere, Resolve), not a new one.</td><td>Assumes one video file per episode that matches the script.</td></tr>
+  </table>
+
+  <h2 style="margin-top:7mm"><span class="num">6</span>Quality checking and known failures</h2>
+  <div class="grid2">
+    <div>
+      <h4>How we know the output is good</h4>
+      <ul>
+        <li><b>Hard rules checked in code</b>: 20–60s, a strong hook beat in the first 3s, an ending on a cliffhanger cue, timestamps on real lines.</li>
+        <li><b>Coverage and variety</b>: episodes covered, promo types, tropes, and where the top 10 come from.</li>
+        <li><b>Rules vs LLM agreement</b>: picks the rules dislike are the first to eyeball.</li>
+        <li><b>Editor decisions</b>: precision overall and in the top 10, reject reasons, and which score separates good from bad.</li>
+        <li><b>Blind gold set</b>: pick your own promos before looking, then measure how many the tool found.</li>
+        <li><b>15 offline tests</b>, including an unseen script format and a fake LLM that returns deliberately sloppy output.</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Where it picks badly (honest list)</h4>
+      <ul>
+        <li><b>Needs backstory</b>: late-episode villains and side characters confuse strangers.</li>
+        <li><b>Rules over-reward shouting</b>: the rules-only #1 pick was a thug's "Get out of the way!" (Ep 15).</li>
+        <li><b>Hook at the wrong end</b>: the rules placed the Ep 24 riding-crop slap at the <i>end</i> of a clip, when it should be the hook.</li>
+        <li><b>Quiet but devastating lines</b> are under-scored by keywords.</li>
+        <li><b>Montage continuity jumps</b> (costumes, locations) can't be seen in a script.</li>
+        <li><b>Blind to visuals</b>: a great slap with a weak line can lose to a strong line in a dull shot.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout yellow"><b>Caveat we state openly:</b> the automatic checks reuse our own rules, so they are partly circular. They catch broken
+    picks but don't prove good ones. That's why the human review and the blind gold set matter.</div>
+</section>
+
+<section style="margin-top:8mm">
+  <h2><span class="num">7</span>Scale, cost and reliability</h2>
+  <table>
+    <tr><th>Metric</th><th>Value (one 50-episode show)</th><th>Notes</th></tr>
+    <tr><td>AI requests</td><td><b>52</b> (50 episodes + 1 montage + 1 judge)</td><td><code>--dry-run</code> prints this before spending</td></tr>
+    <tr><td>Input tokens</td><td>about <b>180K</b> + output</td><td>About 2.5–4K tokens per episode prompt</td></tr>
+    <tr><td>Time (one at a time, free tier)</td><td>about <b>9–39 min</b></td><td>10–45s per request with medium thinking</td></tr>
+    <tr><td>Rerun cost</td><td><b>0</b> requests</td><td>Cached by hash of the model and prompt</td></tr>
+    <tr><td>Rules-only mode</td><td>seconds, free</td><td>Instant baseline or fallback</td></tr>
+  </table>
+  <h3>Scaling to every show, every week</h3>
+  <ul>
+    <li><b>Parallelism:</b> episodes are independent, so on a paid tier they can run 10–20 at once. A show then takes minutes. A queue (Celery or Cloud Tasks) would replace the in-memory job thread.</li>
+    <li><b>Storage:</b> move from files to Postgres (runs, promos, decisions) plus object storage for raw responses once several editors work at the same time.</li>
+    <li><b>Cost control:</b> a cheap model (Flash Lite) for the per-episode pass and a stronger model only for the judge and montages. The rule shortlist can also skip episodes with weak signals.</li>
+    <li><b>Learning loop:</b> approve and reject decisions are used to re-weight scores. Later, real ad metrics (3-second hold rate, CTR, installs) become the target.</li>
+    <li><b>Next capability:</b> a vision model on the actual video to check the visual hook and the exact cut frames.</li>
+  </ul>
+
+  <h3>The reliability incident, and what it taught us</h3>
+  <div class="callout">
+    <p><b>Symptom:</b> a one-episode test sat at 0% for more than 4.5 minutes.</p>
+    <p><b>Root cause:</b> <code>gemini-3.8-flash</code> was timing out on Google's side, <i>and</i> the Gemini SDK has hidden retries (4 extra
+      attempts on timeouts and 5xx errors). Each attempt waited the full 150s timeout before our model fallback could run. An earlier version
+      of our code also stacked its own 5 retries on top of a 3-model fallback, so one episode could have used about 15 requests.</p>
+    <p style="margin:0"><b>Fix:</b> SDK retries off (<code>attempts=1</code>), a 90s timeout, only rate limits retried, fall back once and stay on
+      the working model, a call budget, a dry-run cost check, and live status messages in the UI ("3.8 is busy, switching…").</p>
+  </div>
+
+  <h2 style="margin-top:6mm"><span class="num">8</span>Tech stack and project layout</h2>
+  <div class="grid2">
+    <table>
+      <tr><th>Layer</th><th>Technology</th></tr>
+      <tr><td>Language</td><td>Python 3.13</td></tr>
+      <tr><td>API server</td><td>FastAPI + Uvicorn</td></tr>
+      <tr><td>UI</td><td>React 18 + Vite (vanilla CSS)</td></tr>
+      <tr><td>LLM SDKs</td><td>google-genai (Interactions API), openai, anthropic</td></tr>
+      <tr><td>Video</td><td>CMX3600 EDL, ffmpeg</td></tr>
+      <tr><td>Tests</td><td>unittest (standard library)</td></tr>
+      <tr><td>Config</td><td>.env via python-dotenv</td></tr>
+    </table>
+<pre style="margin:0">kuku-promo-finder/
+├─ promo_finder/   engine (10 modules)
+├─ cli.py          command line
+├─ server.py       FastAPI app
+├─ web/            React UI (src/, dist/)
+├─ eval/           quality_check.py
+├─ tests/          tests + odd_format_show
+├─ docs/           solution.md, demo, guide
+├─ outputs/        results per show
+└─ data/           input pack (git-ignored)</pre>
+  </div>
+</section>
+
+<section style="margin-top:8mm">
+  <h2><span class="num">9</span>How to run it</h2>
+<pre># setup (once)
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env              # add GEMINI_API_KEY
+(cd web && npm install && npm run build)
+
+# check before spending
+python cli.py -i pack.zip --dry-run
+
+# runs
+python cli.py -i pack.zip --model none                         # rules only, free
+python cli.py -i pack.zip --model gemini:gemini-3.6-flash --max-calls 60
+
+# web app
+python server.py                                               # http://localhost:8000
+
+# quality, export, tests
+python eval/quality_check.py outputs/&lt;show&gt;/promos.json -i pack.zip
+python -m promo_finder.export outputs/&lt;show&gt;/promos.json --approved-only
+python -m unittest discover -s tests -v</pre>
+  <div class="callout green"><b>Swapping the model</b> is one string: <code>--model</code>, <code>PROMO_MODEL</code> in .env, or the UI dropdown, e.g.
+    <code>anthropic:claude-sonnet-5-5</code>, <code>groq:llama-3.3-70b-versatile</code>, <code>ollama:llama3.1</code>, or
+    <code>compat:&lt;model&gt;</code> with <code>LLM_BASE_URL</code> for any OpenAI-compatible API Kuku provides.</div>
+
+  <h2 class="page-break"><span class="num">10</span>Interview questions with model answers</h2>
+  <p class="section-intro">The questions are grouped the way an interviewer usually moves: framing → design → AI → quality → scale → engineering
+    → product → behavioural. Difficulty: <span class="pill g">Basic</span> <span class="pill p">Intermediate</span> <span class="pill o">Advanced</span>.
+    Answer in your own words. These are guides, not scripts.</p>
+
+  <h3>A. Problem framing</h3>
+  <div class="qa"><div class="q"><span class="n">Q1.</span>Explain your project in 30 seconds. <span class="pill g lvl">Basic</span></div>
+    <div class="a">Editors at Kuku watch every episode to find promo clips, and new shows come out every week. I built a tool that reads the
+      timestamped screenplays and returns a ranked list of 20–60s clips that open on a hook, end on a cliffhanger and make sense to a stranger.
+      Each one has exact timestamps and a reason. Rules shortlist, an LLM picks and explains, code checks every timestamp, and an editor approves and
+      exports to Premiere.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q2.</span>Why did you choose Problem 1 over the AI lawyer or your own problem? <span class="pill g lvl">Basic</span></div>
+    <div class="a">It's Kuku's core growth loop (paid acquisition), the input is structured (every line is timestamped) and the output can be checked
+      (durations, timestamps, hook and cliffhanger). I could build something an editor could use the next day within 2–3 hours, and measure it honestly.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q3.</span>What assumptions did you make, and which one worries you most? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">That script time equals video time, that promos target strangers, that the hook must be a line or action, that we never cut mid-line,
+      and that spoilers are fine. The one that worries me most is <b>script time = video time</b>. If the edit differs, every timestamp shifts.
+      The fix would be aligning the script to the video's audio transcript before cutting.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q4.</span>How did you define a "good promo" in a way a program can check? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">I split it into checkable parts. Duration is 20–60s (code). A non-camera beat must start within the first 3s and score high on hook
+      signals (code + LLM). The ending must have a cliffhanger cue or be the episode's final stinger (code + LLM). "Standalone" is judged by the LLM as a
+      1–10 score plus a "context needed" note. The parts code can't judge go to the LLM, and the final say goes to the editor.</div></div>
+
+  <h3>B. System design</h3>
+  <div class="qa"><div class="q"><span class="n">Q5.</span>Walk me through the architecture. <span class="pill g lvl">Basic</span></div>
+    <div class="a">A Python engine (parse → rule signals → LLM per episode → montage → validate → score → judge) behind a FastAPI server and a CLI. The React
+      UI talks to the server over JSON. A run is a background job the UI polls. Results, raw LLM responses and editor decisions are stored as files per show.
+      LLM access goes through one provider layer, so the model is a single setting.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q6.</span>Why one LLM request per episode instead of sending all 50 episodes at once? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">Smaller prompts give more focused judgement, each episode can be cached separately, episodes can run in parallel, and one failure costs one
+      episode, not the whole run. The trade-off is that cross-episode promos need a separate pass, which is why there's a montage step that sees every episode's loglines and best beats.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q7.</span>Why is a run a background job with polling? Why not just a normal request? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">A full show takes 10–40 minutes, which is longer than browser and proxy timeouts. A background thread with <code>/api/jobs/{id}</code> polling
+      is simple and gives live progress. At scale I'd move to a proper queue (Celery or Redis, Cloud Tasks) so jobs survive restarts and can be spread across workers.
+      Server-sent events or WebSockets would replace polling.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q8.</span>Why files and not a database? <span class="pill g lvl">Basic</span></div>
+    <div class="a">For a prototype, files are easy to inspect, version and hand in as "raw outputs", and need no setup. They break down with many editors
+      writing at the same time and with search across shows. Then I'd move runs, promos and decisions to Postgres and raw responses to object storage.
+      Decision writes are already atomic (write a temp file, then rename).</div></div>
+  <div class="qa"><div class="q"><span class="n">Q9.</span>How does the system make sure the AI never gives a timestamp that doesn't exist? <span class="pill o lvl">Advanced</span></div>
+    <div class="a">The code owns timestamps. Every segment is snapped to the nearest real line start and end, and flagged if it moved more than 2.5s. If an edge
+      falls inside dialogue, it's extended to the end of the line. Episodes that don't exist are rejected, and 20–60s is enforced. For montages the LLM can only cite beat IDs that code
+      extracted, like <code>E03-B2</code>. Unknown IDs are flagged and dropped. Bad picks show up in a "Rejected" list instead of disappearing silently.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q10.</span>How would you change the design to handle 100 shows a week? <span class="pill o lvl">Advanced</span></div>
+    <div class="a">A queue with workers, episodes processed in parallel under a per-provider rate limiter, Postgres plus object storage, a cheap model for the
+      per-episode pass and a strong model only for the judge, monitoring of cost and failure rate per show, and editor feedback feeding back into the
+      score weights. The engine doesn't change. Only the orchestration and storage around it do.</div></div>
+
+  <h3>C. AI / LLM engineering</h3>
+  <div class="qa"><div class="q"><span class="n">Q11.</span>What did you give to AI and what did you keep as code? Why? <span class="pill g lvl">Basic</span></div>
+    <div class="a">AI handles meaning: is this a hook, does it stand alone, why does it work, what order to post in. Code handles everything exact or
+      cheap: parsing, timestamps, durations, deduplication and scoring arithmetic. Rules provide a shortlist and a fallback. LLMs are good at judgement
+      and bad at precise numbers, so each part does what it's good at.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q12.</span>How do you get reliable JSON out of an LLM? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">JSON mode where the provider supports it (Gemini <code>response_format</code>, OpenAI <code>json_object</code>), an explicit schema in
+      the prompt, and a tolerant parser that strips code fences and pulls the first JSON object out of surrounding text. Then every field is checked:
+      bad timestamps are parsed or dropped, scores are clamped to 0–10. If parsing fails for an episode, it falls back to the rule picks for that episode.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q13.</span>How is the model "easy to swap"? <span class="pill g lvl">Basic</span></div>
+    <div class="a">The model is a <code>provider:model</code> string. <code>llm.py</code> has one small class per provider with a single <code>_call()</code> method.
+      Gemini, Anthropic and OpenAI-compatible APIs (OpenAI, Groq, OpenRouter, Ollama, any custom endpoint) are supported, plus <code>none</code>.
+      Prompts are provider-neutral and live in one file. If Kuku hands me an API in the interview, I set <code>compat:&lt;model&gt;</code> and a base URL.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q14.</span>How do you stop the model from hallucinating? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">I limit what it's allowed to make up. It only sees the script, with no web search. The system prompt says never invent lines or timestamps. Montages use only
+      beat IDs. All numbers are re-checked in code. The rule score (25%) anchors the final score. The judge can flag weak picks. Every raw response is saved,
+      so a hallucination can be traced and audited.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q15.</span>Why blend 75% LLM with 25% rules? Why not use the LLM's score alone? <span class="pill o lvl">Advanced</span></div>
+    <div class="a">LLM scores are often inflated and not well calibrated: many picks get 8–9/10. The rule score is a consistent second opinion based on
+      real signals in the script, so a clip with no hook can't rank high just because the model was confident. The exact weights are a judgement call, and the editor feedback
+      report shows which score actually separates approved from rejected picks, which is how I'd re-tune them with evidence.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q16.</span>What's in your prompts, and what made them better? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">The system prompt sets a persona (a performance-marketing editor for ReelShort- and DramaBox-style apps) and defines hook, cliffhanger and standalone with
+      concrete examples. The episode prompt gives premise, logline, the full timestamped script and rule candidates ("may be wrong, use or ignore"), with
+      exact rules (copy timestamps, 20–60s, hook in 3s) and a JSON schema. Asking for "context needed" made the model reveal its own standalone doubts,
+      which feeds a penalty.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q17.</span>Why didn't you use the Google Search tool from Gemini's example code? <span class="pill g lvl">Basic</span></div>
+    <div class="a">Promos must come only from the show's own footage. Search adds latency and cost and could bring in outside content. It's the wrong tool for this job.</div></div>
+
+  <h3>D. Quality and evaluation</h3>
+  <div class="qa"><div class="q"><span class="n">Q18.</span>How do you know your promos are actually good? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">Three layers. First, automatic hard-rule checks (duration, hook in 3s, cliffhanger ending, valid timestamps). Second, human review: approve or reject with
+      reasons in the UI, giving precision overall and in the top 10. Third, a blind gold set: I picked promos myself before looking, then measured how many the tool found. I'm
+      upfront that the automatic checks partly reuse my own rules. The real test is human judgement and, in production, ad metrics like 3-second hold rate.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q19.</span>Where does your tool pick badly? <span class="pill g lvl">Basic</span></div>
+    <div class="a">Clips that need backstory (late-episode villains), rules over-rewarding shouting (the rules-only #1 was a thug yelling "Get out of the way!"),
+      a slap that should be the hook placed at the end of a clip, under-scored quiet lines, continuity jumps in montages, and anything visual, because it only reads the script.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q20.</span>What's precision vs recall here, and which matters more? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">Precision is the share of suggested promos that are actually good. Recall is the share of all good promos in the show that the tool found. For an editor's shortlist, <b>precision in the top 10</b>
+      matters most, because they only post a few, and every bad pick wastes review time. Recall matters less, because a show has more good moments than you'll ever post. The
+      blind gold set estimates recall. Approve and reject decisions measure precision.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q21.</span>How would you A/B test whether the tool's promos beat the editors' manual picks? <span class="pill o lvl">Advanced</span></div>
+    <div class="a">Pair promos from the same show, one tool pick and one editor pick, run them with the same budget, audience and placement, and compare 3-second
+      hold rate, CTR, cost per install and day-7 retention of installers. Run enough impressions for statistical significance, and rotate which show and slot each gets
+      to control for creative fatigue. Also measure editor time saved per show, since that's the original pain point.</div></div>
+
+  <h3>E. Reliability, cost and scale</h3>
+  <div class="qa"><div class="q"><span class="n">Q22.</span>Tell me about a bug you hit and how you debugged it. <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">A one-episode run sat at 0% for 4.5 minutes. The key and network were fine, because tiny test calls worked on 3.6 Flash. So I tested each model separately and saw 3.8 and 3.7
+      returning 504s. Then I read the SDK source and found hidden retries: 4 extra attempts on timeouts, each waiting 150s. I disabled SDK retries, cut the
+      timeout to 90s, kept a single model fallback, and added live status messages, a call budget and a dry-run. The lesson: understand every retry layer, especially on a paid key.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q23.</span>What does it cost to run, and how did you protect a limited API key? <span class="pill g lvl">Basic</span></div>
+    <div class="a">52 requests and about 180K input tokens per 50-episode show. Protections: <code>--dry-run</code> shows the cost first, <code>--max-calls</code> sets a budget, a
+      requests-per-minute throttle, retries only on rate limits, the cache makes reruns free, and the UI shows "About N AI requests · X–Y min" before you press run.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q24.</span>What happens if the AI provider is completely down? <span class="pill g lvl">Basic</span></div>
+    <div class="a">Gemini falls back across models. If every model fails, each episode falls back to rule candidates, and the montage and judge passes are skipped with a
+      log entry. The editor still gets a ranked list, marked as rules-based, so it degrades rather than failing.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q25.</span>How would you make a full show finish in 2 minutes instead of 30? <span class="pill o lvl">Advanced</span></div>
+    <div class="a">Run episodes in parallel with a semaphore sized to the provider's rate limit (for example 20 at a time on a paid tier). Use lower thinking or a lighter model for the
+      per-episode pass. Stream progress. Skip unchanged episodes through the cache. With 50 episodes at about 30s each and 20 in parallel, that's 3 rounds, about 1.5 minutes plus the montage and judge passes.</div></div>
+
+  <h3>F. Software engineering</h3>
+  <div class="qa"><div class="q"><span class="n">Q26.</span>How did you test something that depends on a non-deterministic LLM? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">A fake LLM class returns canned, deliberately sloppy JSON: wrong timestamps, a too-short clip, unknown beat IDs, fenced output. The tests then check
+      that the validation layer catches each problem, that the cache makes the second run cost 0 requests, and that the budget stops extra calls. All 15 tests run offline in about 4s.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q27.</span>What happens if the next show's scripts are formatted differently? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">The parser accepts MM:SS or HH:MM:SS, "." or "," decimals, bold or plain labels, and "Start/End", bracket or arrow timestamps. Broken blocks are skipped with warnings, and reversed times are swapped.
+      I wrote an original test show in a different format to prove it. If a format is completely new, the parser is the only module to change, and the rest
+      of the pipeline works on the same Event model.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q28.</span>Explain the EDL export. Why does it matter? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">An EDL (CMX3600) is a plain-text edit list that Premiere and Resolve import: each event has a source reel (the episode), source in/out and record
+      in/out timecodes. I write one per promo, with the hook and cliffhanger as comments, and an ffmpeg script that cuts the real clips. It plugs into the editor's existing
+      workflow instead of asking them to learn a new tool. I tested it on generated videos: 29.5s + 9.5s came out at exactly 39.0s. Testing also caught a
+      rounding bug: Python's <code>round()</code> rounds halves to the nearest even number.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q29.</span>How do you handle API keys and confidential data? <span class="pill g lvl">Basic</span></div>
+    <div class="a">Keys live in <code>.env</code>, which is git-ignored. Keys typed into the UI are used for one run and never saved. The config endpoint only returns true/false for
+      which providers have keys. The input pack sits in a git-ignored <code>data/</code>, uploads are processed in memory, and the test fixture is my own
+      original content, so the repo can be public without leaking Kuku's show.</div></div>
+
+  <h3>G. Product and human in the loop</h3>
+  <div class="qa"><div class="q"><span class="n">Q30.</span>Where does the human stay in the loop, and why? <span class="pill g lvl">Basic</span></div>
+    <div class="a">Nothing is posted automatically. The editor approves or rejects every pick, and can read the script excerpt and warnings first. Ads are
+      brand-facing and cost money, and the tool can't see visuals. Each decision also becomes labelled data to improve the ranking.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q31.</span>How would you know the tool worked once a real team used it? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">Editor time per show (hours → minutes), approval rate of the top 10, the share of posted promos that came from the tool, and ad performance
+      (3-second hold, CTR, CPI) against manually picked promos. Plus qualitative feedback: do the reject reasons shrink over time?</div></div>
+  <div class="qa"><div class="q"><span class="n">Q32.</span>What would you build next with one more week? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">(1) A vision pass on the actual video to check visual hooks and exact cut frames. (2) Audio-transcript alignment so script time is checked against video time. (3) Learning
+      the score weights from editor decisions, then from ad metrics. (4) Multi-language support (Kuku works across languages) by prompting in the
+      show's language and evaluating with native editors. (5) Parallel processing and a queue.</div></div>
+  <div class="qa"><div class="q"><span class="n">Q33.</span>Does this work for a Hindi or Tamil show? <span class="pill o lvl">Advanced</span></div>
+    <div class="a">The parser is language-neutral, because it keys on structure and timestamps. The keyword rules are English-only, so they'd weaken, and the score blend would lean more on the LLM.
+      Modern LLMs read Hindi and Tamil well, but hooks are cultural, so I'd add language-specific lexicons, have the prompt explain local genre conventions, and
+      validate with native-speaking editors before trusting the ranking.</div></div>
+
+  <h3>H. Behavioural and AI-tool usage</h3>
+  <div class="qa"><div class="q"><span class="n">Q34.</span>Which AI tools did you use, and where did they get it wrong? <span class="pill g lvl">Basic</span></div>
+    <div class="a">I used Claude Code to scaffold the code, UI and docs. I made the scoping, assumption, weighting and review decisions. It got these wrong: it targeted
+      <code>gemini-2.5-flash</code>, which returned 404 for new users because its knowledge was out of date. It sent <code>response_mime_type</code>, which the Interactions API rejects. And its first retry
+      logic could burn about 15 requests per episode. I caught each one by running small tests and reading the errors. <i>(Add one example of your own from the real run.)</i></div></div>
+  <div class="qa"><div class="q"><span class="n">Q35.</span>How much of this is your own work? Could you change it live? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">Answer honestly: the AI wrote a lot of the code, and the decisions were mine. Show it by making a live change. For example, change <code>LLM_WEIGHT</code>
+      in <code>rank.py</code>, add a reject reason, tighten the snap tolerance in <code>validate.py</code>, or add a keyword to <code>signals.py</code>. Then rerun and explain
+      what moved and why. <b>Practise these four changes before the interview.</b></div></div>
+  <div class="qa"><div class="q"><span class="n">Q36.</span>If you had to cut this project to 1 hour, what would you keep? <span class="pill p lvl">Intermediate</span></div>
+    <div class="a">The parser, one LLM prompt per episode with JSON output, the code validation of timestamps and duration, and a Markdown report. That's the core value.
+      The UI, montages, judge, export and feedback loop are all improvements on that core.</div></div>
+
+  <div class="callout purple" style="margin-top:4mm">
+    <b>Tips for the interview</b>
+    <ul style="margin:1.5mm 0 0">
+      <li>Lead with the problem and the outcome, then the design. Use Figure 1 as your mental map.</li>
+      <li>Bring numbers: 52 requests, about 180K tokens, 15 tests, your precision in the top 10, and how many of your gold-set picks the tool found.</li>
+      <li>Volunteer the failures before you're asked. The brief rewards honesty over polish.</li>
+      <li>Practise the "new show" demo (<code>docs/interview_demo.md</code>) and two or three live code changes.</li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>

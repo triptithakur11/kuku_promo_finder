@@ -1,0 +1,63 @@
+Episode: 1
+Episode Logline: A waitress learns the billionaire she just insulted is her new landlord.
+
+SCENE 1
+Scene heading: INT. DINER – NIGHT
+Scene start: 00:00:00,00
+Scene end: 00:00:52,00
+
+ACTION:
+[00:00:00.50 - 00:00:03.00]
+Maya slams a coffee pot down in front of a man in a grey suit. Coffee splashes onto his cuff.
+
+MAYA (Furious):
+[00:00:03.10 - 00:00:05.40]
+"You think money makes you better than us?"
+
+ETHAN (Cold, Amused):
+[00:00:05.60 - 00:00:07.20]
+"No. It makes me your landlord."
+
+SOUND FX:
+[00:00:07.20 - 00:00:09.00]
+A plate shatters on the floor. The whole diner goes silent.
+
+MAYA:
+[00:00:09.50 - 00:00:12.00]
+"Get out of my diner."
+
+ETHAN (Smirking):
+[00:00:12.30 - 00:00:16.00]
+"Your diner? Read the lease you signed this morning."
+
+ACTION:
+[00:00:16.00 - 00:00:22.00]
+Maya grabs the lease from the counter. Her hands shake as she reads the name at the bottom.
+
+MAYA (Shocked, Whispering):
+[00:00:22.50 - 00:00:25.00]
+"Ethan Cole... you bought the whole street?"
+
+ETHAN (Menacing):
+[00:00:25.50 - 00:00:30.00]
+"And by Friday, you'll beg me to let you stay."
+
+CAMERA:
+[00:00:30.00 - 00:00:34.00]
+Slow push-in on Maya's face as tears gather but she refuses to look away.
+
+MAYA (Defiant):
+[00:00:34.50 - 00:00:38.00]
+"I would rather burn this place down."
+
+ACTION:
+[00:00:38.00 - 00:00:45.00]
+Ethan leans in close, then freezes as he sees the locket around her neck.
+
+ETHAN (Stunned):
+[00:00:45.50 - 00:00:48.50]
+"Where did you get that locket?"
+
+SOUND FX:
+[00:00:48.50 - 00:00:52.00]
+Ominous drone swells. Cut to black.

@@ -1,0 +1,11 @@
+# Kuku input pack is confidential - never commit it
+data/
+.env
+.venv/
+__pycache__/
+*.pyc
+web/node_modules/
+web/dist/
+.DS_Store
+# Generated promos quote confidential show dialogue
+outputs/
