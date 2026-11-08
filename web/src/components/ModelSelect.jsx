@@ -112,7 +112,7 @@ export default function ModelSelect({ value, onChange, keys }) {
                   onMouseEnter={() => setActive(i)} onMouseDown={(e) => { e.preventDefault(); choose(o); }}>
                   <ProviderIcon provider={o.provider} />
                   <span className="mtext">
-                    <b>{o.name} {(o.badges || []).map((b) => <span key={b} className={`pill sm ${b === "Free" || b === "Local" ? "green" : "purple"}`}>{b}</span>)}</b>
+                    <b>{o.name} {(o.badges || []).map((b) => <span key={b} className={`pill sm ${b === "Free" || b === "Local" ? "green" : "accent"}`}>{b}</span>)}</b>
                     <span>{o.desc}</span>
                   </span>
                   <KeyBadge provider={o.provider} keys={keys} />

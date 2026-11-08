@@ -47,7 +47,7 @@ export default function Home({ config, runs, error, onRun, onOpen }) {
     <>
       <section className="hero">
         <div>
-          <span className="pill purple"><Sparkle size={16} /> AI Promo Finder</span>
+          <span className="pill accent"><Sparkle size={16} /> AI Promo Finder</span>
           <h2>Upload a show. Get its best promo clips, ranked.</h2>
           <p>
             Today an editor watches every episode to find ad moments. Promo Finder reads the screenplays and picks 20–60
@@ -55,11 +55,11 @@ export default function Home({ config, runs, error, onRun, onOpen }) {
           </p>
           <div className="pills">
             <span className="pill yellow"><Shield size={16} /> You approve every clip before it’s posted</span>
-            <span className="pill purple-outline"><Crown size={16} /> Ranked by what to post first</span>
+            <span className="pill accent-outline"><Crown size={16} /> Ranked by what to post first</span>
           </div>
         </div>
         <div className="preview" aria-hidden>
-          <span className="pill purple sm"><Film size={14} /> Episode 1 · 00:39</span>
+          <span className="pill accent sm"><Film size={14} /> Episode 1 · 00:39</span>
           <div className="bubble">“Because he is marrying me.”</div>
           <div className="preview-card">
             <b>Promo #1 · Jilted at the altar</b>
@@ -87,7 +87,7 @@ export default function Home({ config, runs, error, onRun, onOpen }) {
               <span className="icon-tile"><Upload size={22} /></span>
               <div className="dz-title">Drop your screenplay pack here</div>
               <div className="dz-sub">.zip or .txt · checked on this computer before anything is sent</div>
-              <span className="btn btn-purple">Choose file</span>
+              <span className="btn btn-accent">Choose file</span>
             </div>
           ) : (
             <div className="card file-card">
@@ -99,7 +99,7 @@ export default function Home({ config, runs, error, onRun, onOpen }) {
                   {info && <span className="pill sm green">{info.episodes_found} episodes found</span>}
                   {info && <span className="pill sm">{info.minutes_of_footage} min of footage</span>}
                   {info && (ai
-                    ? <span className="pill sm purple">About {info.ai_requests} AI requests</span>
+                    ? <span className="pill sm accent">About {info.ai_requests} AI requests</span>
                     : <span className="pill sm">No AI · free</span>)}
                   {info && ai && <span className="pill sm">{fmtMinutes(info.approx_minutes)}</span>}
                   {info?.episode_requests_cached > 0 && ai && <span className="pill sm">{info.episode_requests_cached} cached</span>}
@@ -228,7 +228,7 @@ export default function Home({ config, runs, error, onRun, onOpen }) {
                 <div className="t">{r.show}</div>
                 <div className="s">{r.model === "rules-only" ? "Rules only" : r.model} · {r.created}</div>
               </span>
-              <span className="pill sm purple">{r.kept} promos</span>
+              <span className="pill sm accent">{r.kept} promos</span>
               <ArrowRight size={18} className="muted" />
             </button>
           ))}

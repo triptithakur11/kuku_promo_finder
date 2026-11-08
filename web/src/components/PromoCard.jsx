@@ -42,7 +42,7 @@ export default function PromoCard({ promo: p, decision, onDecide }) {
             {status === "approved" && <span className="pill sm green"><Check size={13} /> Approved</span>}
             {status === "rejected" && <span className="pill sm orange"><X size={13} /> Rejected{decision.reason ? ` · ${decision.reason}` : ""}</span>}
             {!status && p.rank <= 3 && <span className="pill sm green">Post first</span>}
-            {p.kind === "montage" && <span className="pill sm purple">Multi-episode</span>}
+            {p.kind === "montage" && <span className="pill sm accent">Multi-episode</span>}
             {p.kind === "multi" && <span className="pill sm">{p.segments.length} cuts</span>}
             <span className="pill sm">{Math.round(p.duration)}s</span>
           </div>
